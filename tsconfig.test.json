@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.base.json", // Extend base configuration (optional)
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ES6",
+    "outDir": "./lib/test",
+    "moduleResolution": "node",
+    "declaration": true
+  },
+  "include": ["test", "test/*.ts", "test/*.d.ts"],
+  "exclude": ["node_modules", "src"]
+}

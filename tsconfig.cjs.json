@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.base.json", // Extend base configuration (optional)
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "commonjs",
+    "outDir": "./lib/cjs",
+    "moduleResolution": "node",
+    "declaration": true
+  }
+}
