@@ -23,6 +23,8 @@ import {
     DedicatedVirtualAccountSplitTransactionBody,
     RemoveSplitDedicatedVirtualAccountBody,
 } from "./dedicatedVirtualAccount";
+import Customers from "../resources/Customer";
+import Charges from "../resources/Charge";
 
 export * from "./applepay";
 export * from "./charge";
@@ -124,7 +126,7 @@ export interface ChargesApi {
      * The Charge API allows you to configure payment channel of your choice when initiating a payment.
      * @param apiKey Paystack API key
      */
-    constructor(apiKey: string): ChargesApi;
+    constructor(apiKey: string): Charges;
 
     /**
      * Initialize a charge
@@ -174,7 +176,7 @@ export interface CustomersApi {
      * The Customers API allows you create and manage customers on your integration.
      * @param apiKey Paystack API key
      */
-    constructor(apiKey: string): CustomersApi;
+    constructor(apiKey: string): Customers;
 
     /**
      * Create a customer on your integration.

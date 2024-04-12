@@ -1,6 +1,6 @@
 {
     "name": "@obipascal/paystack-sdk",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "main": "./lib/cjs/index.js",
     "module": "./lib/es/index.js",
     "types": "./lib/es/types/index.d.ts",
