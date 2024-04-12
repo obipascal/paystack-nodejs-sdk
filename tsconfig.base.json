@@ -1,12 +1,9 @@
 {
-  "compilerOptions": {
-    "target": "esnext", // Set target to ES6 or later
-    "module": "es6", // Set module type to ES modules
-    "outDir": "lib", // Specify output directory for compiled JS (optional)
-    "strict": true, // Enable stricter type checking (optional)
-    "paths": {
-      "@paystack-api-sdk/*": ["./src/*"]
-    }
-  },
-  "include": ["src", "src/*.ts", "src/*.d.ts"] // Specify source directory
+    "compilerOptions": {
+        "target": "esnext", // Set target to ES6 or later
+        "module": "es6", // Set module type to ES modules
+        "outDir": "lib", // Specify output directory for compiled JS (optional)
+        "strict": true // Enable stricter type checking (optional)
+    },
+    "include": ["src", "src/*.ts", "src/*.d.ts"] // Specify source directory
 }
