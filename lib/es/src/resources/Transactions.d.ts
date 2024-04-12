@@ -1,5 +1,9 @@
-import { ChargeAuthorizationBody, InitializeTransactionBody, PartialDebitBody } from "../types/transactions";
-export default class Transactions {
+import {
+    ChargeAuthorizationBody,
+    InitializeTransactionBody,
+    PartialDebitBody,
+} from "../types/transactions";
+export class Transactions {
     private httpClient;
     /**
      * The Transactions API allows you create and manage payments on your integration.
@@ -10,7 +14,9 @@ export default class Transactions {
      * Initialize a transaction from your backend
      * @param data Transaction initialization data
      */
-    initialize(data: InitializeTransactionBody): Promise<import("axios").AxiosResponse<any, any>>;
+    initialize(
+        data: InitializeTransactionBody
+    ): Promise<import("axios").AxiosResponse<any, any>>;
     /**
      * Confirm the status of a transaction
      * @param reference Transaction reference
@@ -29,12 +35,16 @@ export default class Transactions {
      * All authorizations marked as reusable can be charged with this endpoint whenever you need to receive payments
      * @param data Charge authorization data
      */
-    chargeAuthorization(data: ChargeAuthorizationBody): Promise<import("axios").AxiosResponse<any, any>>;
+    chargeAuthorization(
+        data: ChargeAuthorizationBody
+    ): Promise<import("axios").AxiosResponse<any, any>>;
     /**
      * View the timeline of a transaction
      * @param id_or_reference Transaction ID or reference
      */
-    timeline(id_or_reference: string): Promise<import("axios").AxiosResponse<any, any>>;
+    timeline(
+        id_or_reference: string
+    ): Promise<import("axios").AxiosResponse<any, any>>;
     /**
      * Total amount received on your account
      */
@@ -46,5 +56,8 @@ export default class Transactions {
     /**
      * Retrieve part of a payment from a customer
      */
-    partialDebit(data: PartialDebitBody): Promise<import("axios").AxiosResponse<any, any>>;
+    partialDebit(
+        data: PartialDebitBody
+    ): Promise<import("axios").AxiosResponse<any, any>>;
 }
+

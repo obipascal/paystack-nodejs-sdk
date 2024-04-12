@@ -9,7 +9,7 @@ import {
     SubmitPhoneBody,
 } from "../types/charge";
 
-export default class Charges {
+export class Charges {
     private httpClient: AxiosInstance;
 
     /**

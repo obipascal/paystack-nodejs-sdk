@@ -1,5 +1,5 @@
 import { ApplePayBody } from "../types/applepay";
-export default class ApplePay {
+export declare class ApplePay {
     private httpClient;
     /**
      * The Apple Pay API allows you register your application's top-level domain or subdomain.

@@ -1,5 +1,5 @@
 import { ChargeAuthorizationBody, InitializeTransactionBody, PartialDebitBody } from "../types/transactions";
-export default class Transactions {
+export declare class Transactions {
     private httpClient;
     /**
      * The Transactions API allows you create and manage payments on your integration.

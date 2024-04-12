@@ -1,5 +1,5 @@
 import { MiscellaneousParams } from "../types/miscellaneous";
-export default class Miscellaneous {
+export declare class Miscellaneous {
     private httpClient;
     /**
      * The Miscellaneous API allows you perform miscellaneous operations.

@@ -1,5 +1,5 @@
 import { CreateSubaccountBody, UpdateSubaccountBody } from "../types/subaccounts";
-export default class Subaccounts {
+export declare class Subaccounts {
     private httpClient;
     /**
      * The Subaccounts API allows you create and manage subaccounts on your integration. Subaccounts can be used to split payment between two accounts (your main account and a sub account).

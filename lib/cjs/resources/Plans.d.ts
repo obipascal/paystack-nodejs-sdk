@@ -1,5 +1,5 @@
 import { CreatePlanBody } from "../types/plans";
-export default class Plans {
+export declare class Plans {
     private httpClient;
     /**
      * The Plans API allows you create and manage installment payment options on your integration.

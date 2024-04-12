@@ -1,5 +1,5 @@
 import { AssignDedicatedVirtualAccountBody, CreateDedicatedVirtualAccountBody, DedicatedVirtualAccountSplitTransactionBody, DedicatedVirtualAccountQueryParams, RemoveSplitDedicatedVirtualAccountBody } from "../types/dedicatedVirtualAccount";
-export default class DedicatedVirtualAccounts {
+export declare class DedicatedVirtualAccounts {
     private httpClient;
     /**
      * The Dedicated Virtual Account API enables Nigerian merchants to manage unique payment accounts of their customers.

@@ -1,5 +1,5 @@
 import { BatchRecipientBody, TransferRecipientBody } from "../types/transferRecipient";
-export default class TransferRecipients {
+export declare class TransferRecipients {
     private httpClient;
     /**
      * The Transfer Recipients API allows you create and manage beneficiaries that you send money to.

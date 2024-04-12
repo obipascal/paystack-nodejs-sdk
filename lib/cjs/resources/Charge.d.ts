@@ -1,5 +1,5 @@
 import { ChargeBody, SubmitAddressBody, SubmitBirthdayBody, SubmitOtpBody, SubmitPINBody, SubmitPhoneBody } from "../types/charge";
-export default class Charges {
+export declare class Charges {
     private httpClient;
     /**
      * The Charge API allows you to configure payment channel of your choice when initiating a payment.

@@ -1,6 +1,6 @@
 import { BulkChargeBody } from "../types/charge";
 import { PaginationParams } from "../types/const";
-export default class BulkCharges {
+export declare class BulkCharges {
     private httpClient;
     /**
      * The Bulk Charges API allows you create and manage multiple recurring payments from your customers.

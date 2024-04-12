@@ -1,5 +1,10 @@
-import { RemoveSubaccountFromSplitBody, SplitSubaccountBody, TransactionSplitBody, UpdateSplitTransnactionBody } from "../types/transactions";
-export default class TransactionSplit {
+import {
+    RemoveSubaccountFromSplitBody,
+    SplitSubaccountBody,
+    TransactionSplitBody,
+    UpdateSplitTransnactionBody,
+} from "../types/transactions";
+export class TransactionSplit {
     private httpClient;
     /**
      * The Transaction Splits API enables merchants split the settlement for a transaction across their payout account, and one or more subaccounts.
@@ -10,7 +15,9 @@ export default class TransactionSplit {
      * Create a split payment on your integration
      * @param data Transaction split data
      */
-    create(data: TransactionSplitBody): Promise<import("axios").AxiosResponse<any, any>>;
+    create(
+        data: TransactionSplitBody
+    ): Promise<import("axios").AxiosResponse<any, any>>;
     /**
      * List the transaction splits available on your integration
      */
@@ -25,17 +32,27 @@ export default class TransactionSplit {
      * @param id Transaction split ID
      * @param data Transaction split data
      */
-    update(id: string, data: UpdateSplitTransnactionBody): Promise<import("axios").AxiosResponse<any, any>>;
+    update(
+        id: string,
+        data: UpdateSplitTransnactionBody
+    ): Promise<import("axios").AxiosResponse<any, any>>;
     /**
      * Add a Subaccount to a Transaction Split, or update the share of an existing Subaccount in a Transaction Split
      * @param id Transaction split ID
      * @param data Split subaccount data
      */
-    addOrUpdateSplitSubaccount(id: string, data: SplitSubaccountBody): Promise<import("axios").AxiosResponse<any, any>>;
+    addOrUpdateSplitSubaccount(
+        id: string,
+        data: SplitSubaccountBody
+    ): Promise<import("axios").AxiosResponse<any, any>>;
     /**
      * Remove a subaccount from a transaction split
      * @param id Transaction split ID
      * @param subaccount Subaccount code
      */
-    removeSplitSubaccount(id: string, data: RemoveSubaccountFromSplitBody): Promise<import("axios").AxiosResponse<any, any>>;
+    removeSplitSubaccount(
+        id: string,
+        data: RemoveSubaccountFromSplitBody
+    ): Promise<import("axios").AxiosResponse<any, any>>;
 }
+

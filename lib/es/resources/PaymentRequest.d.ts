@@ -1,5 +1,5 @@
 import { PaymentRequestBody, SendNotificationBody } from "../types/paymentRequest";
-export default class PaymentRequest {
+export declare class PaymentRequest {
     private httpClient;
     /**
      * The Payment Requests API allows you manage requests for payment of goods and services.

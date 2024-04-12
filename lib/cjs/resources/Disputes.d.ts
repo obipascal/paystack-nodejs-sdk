@@ -1,5 +1,5 @@
 import { AddEvidenceBody, DisputeParams, UpdateDisputeBody } from "../types/dispute";
-export default class Disputes {
+export declare class Disputes {
     private httpClient;
     /**
      * The Disputes API allows you manage transaction disputes on your integration.

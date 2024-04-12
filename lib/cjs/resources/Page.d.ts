@@ -1,5 +1,5 @@
 import { AddProductBody, PageBody, UpdatePageBody } from "../types/page";
-export default class Pages {
+export declare class Pages {
     private httpClient;
     /**
      * Update a payment page details on your integration

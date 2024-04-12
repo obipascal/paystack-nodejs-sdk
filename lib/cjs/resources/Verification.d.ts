@@ -1,5 +1,5 @@
 import { ValidateAccountBody, VerificationParams } from "../types/verification";
-export default class Verification {
+export declare class Verification {
     private httpClient;
     /**
      * The Verification API allows you perform KYC processes.

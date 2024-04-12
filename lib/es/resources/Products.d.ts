@@ -1,5 +1,5 @@
 import { ProductBody } from "../types/product";
-export default class Products {
+export declare class Products {
     private httpClient;
     /**
      * The Products API allows you create and manage inventories on your integration.

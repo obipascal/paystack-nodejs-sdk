@@ -23,9 +23,6 @@ import {
     DedicatedVirtualAccountSplitTransactionBody,
     RemoveSplitDedicatedVirtualAccountBody,
 } from "./dedicatedVirtualAccount";
-import Customers from "../resources/Customer";
-import Charges from "../resources/Charge";
-import DedicatedVirtualAccounts from "../resources/DedicatedVirtualAccount";
 
 export * from "./applepay";
 export * from "./charge";

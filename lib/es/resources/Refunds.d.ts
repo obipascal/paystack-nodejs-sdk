@@ -1,5 +1,5 @@
 import { RefundBody } from "../types/refund";
-export default class Refunds {
+export declare class Refunds {
     private httpClient;
     /**
      * The Refunds API allows you create and manage transaction refunds.

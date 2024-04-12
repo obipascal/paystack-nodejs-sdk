@@ -1,5 +1,5 @@
 import { EnableSubscriptBody, SubscriptionBody } from "../types/subscription";
-export default class Subscription {
+export declare class Subscription {
     private httpClient;
     /**
      * The Subscriptions API allows you create and manage recurring payment on your integration.

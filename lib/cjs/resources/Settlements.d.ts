@@ -1,4 +1,4 @@
-export default class Settlements {
+export declare class Settlements {
     private httpClient;
     /**
      * The Settlements API allows you manage settlements on your integration.

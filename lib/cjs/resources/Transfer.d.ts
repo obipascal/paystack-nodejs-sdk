@@ -1,5 +1,5 @@
 import { BulkTransferBody, FinalizeTransferBody, ResendTranasferCodeBody, TransferBody } from "../types/transfer";
-export default class Transfer {
+export declare class Transfer {
     private httpClient;
     /**
      * The Transfers API allows you automate sending money to your customers.

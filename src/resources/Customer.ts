@@ -8,7 +8,7 @@ import {
 } from "../types/customer";
 import { CustomersInterface } from "../types";
 
-export default class Customers implements CustomersInterface {
+export class Customers implements CustomersInterface {
     private httpClient: AxiosInstance;
 
     /**

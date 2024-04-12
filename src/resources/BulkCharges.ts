@@ -3,7 +3,7 @@ import HttpRequest, { HttpRequestEndpoints } from "../config/request";
 import { BulkChargeBody } from "../types/charge";
 import { PaginationParams } from "../types/const";
 
-export default class BulkCharges {
+export class BulkCharges {
     private httpClient: AxiosInstance;
 
     /**

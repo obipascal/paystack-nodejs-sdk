@@ -1,5 +1,5 @@
 import { RemoveSubaccountFromSplitBody, SplitSubaccountBody, TransactionSplitBody, UpdateSplitTransnactionBody } from "../types/transactions";
-export default class TransactionSplit {
+export declare class TransactionSplit {
     private httpClient;
     /**
      * The Transaction Splits API enables merchants split the settlement for a transaction across their payout account, and one or more subaccounts.
