@@ -6,9 +6,8 @@ import {
     DeactivateAuthorizationBody,
     UpdateCustomerBody,
 } from "../types/customer";
-import { CustomersInterface } from "../types";
 
-export class Customers implements CustomersInterface {
+export class Customers {
     private httpClient: AxiosInstance;
 
     /**

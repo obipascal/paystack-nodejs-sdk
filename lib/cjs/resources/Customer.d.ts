@@ -1,6 +1,5 @@
 import { BlacklistOrWhitelistCustomerBody, CreateCustomerBody, DeactivateAuthorizationBody, UpdateCustomerBody } from "../types/customer";
-import { CustomersInterface } from "../types";
-export declare class Customers implements CustomersInterface {
+export declare class Customers {
     private httpClient;
     /**
      * The Customers API allows you create and manage customers on your integration.

@@ -150,63 +150,6 @@ export interface ChargesInterface {
      */
     submitAddress(data: SubmitAddressBody): Promise<AxiosResponse<any, any>>;
 }
-/**
- * The Customers API allows you create and manage customers on your integration.
- * @param apiKey Paystack API key
- */
-export interface CustomersInterface {
-    /**
-     * Create a customer on your integration.
-     * ___
-     * The first_name, last_name and phone are optional parameters. However, when creating a customer that would be assigned a Dedicated Virtual Account and your business catgeory falls under Betting, Financial services, and General Service, then these parameters become compulsory.
-     * @param data Customer data
-     */
-    create(data: CreateCustomerBody): Promise<AxiosResponse<any, any>>; // Replace "any" with actual error type
-
-    /**
-     * List customers available on your integration.
-     */
-    list(): Promise<AxiosResponse<any, any>>; // Replace "any" with actual error type
-
-    /**
-     * Get details of a customer on your integration.
-     * @param email_or_code Customer's email or code
-     */
-    fetch(email_or_code: string): Promise<AxiosResponse<any, any>>; // Replace "any" with actual error type
-
-    /**
-     * Update a customer's details on your integration
-     * @param code Customer's code
-     * @param data Customer data
-     */
-    update(
-        code: string,
-        data: UpdateCustomerBody
-    ): Promise<AxiosResponse<any, any>>; // Replace "any" with actual error type
-
-    /**
-     * Validate a customer's identity
-     * @param code Customer's code
-     * @param data Customer identification data
-     */
-    validate(code: string, data: any): Promise<AxiosResponse<any, any>>; // Likely doesn't have a specific response structure
-
-    /**
-     * Whitelist or blacklist a customer on your integration
-     * @param data Customer risk action data
-     */
-    blacklistOrWhitelistCustomer(
-        data: BlacklistOrWhitelistCustomerBody
-    ): Promise<AxiosResponse<any, any>>; // Likely doesn't have a specific response structure
-
-    /**
-     * Deactivate an authorization
-     * @param data Authorization deactivation data
-     */
-    deactivateAuthorization(
-        data: DeactivateAuthorizationBody
-    ): Promise<AxiosResponse<any, any>>; // Likely doesn't have a specific response structure
-}
 
 export interface DedicatedVirtualAccountsInterface {
     /**
