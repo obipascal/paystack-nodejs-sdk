@@ -1,41 +1,41 @@
-import CustomersApi from "./resources/Customer";
-import TransactionApi from "./resources/Transactions";
-import TransferApi from "./resources/Transfer";
-import TransferRecipientApi from "./resources/TransferRecipients";
-import VirtualAccountApi from "./resources/DedicatedVirtualAccount";
-import ApplePayApi from "./resources/ApplePay";
-import PageApi from "./resources/Page";
-import PaymentRequestApi from "./resources/PaymentRequest";
-import PlansApi from "./resources/Plans";
-import ProductsApi from "./resources/Products";
-import SettlementsApi from "./resources/Settlements";
-import SubaccountsApi from "./resources/Subaccounts";
-import SubscriptionApi from "./resources/Subscription";
-import BulkChargesApi from "./resources/BulkCharges";
-import ChargesApi from "./resources/Charge";
-import DisputesApi from "./resources/Disputes";
-import RefundsApi from "./resources/Refunds";
-import VerificationApi from "./resources/Verification";
-import MiscellaneousApi from "./resources/Miscellaneous";
+import Customers from "./resources/Customer";
+import Transaction from "./resources/Transactions";
+import Transfer from "./resources/Transfer";
+import TransferRecipient from "./resources/TransferRecipients";
+import VirtualAccount from "./resources/DedicatedVirtualAccount";
+import ApplePay from "./resources/ApplePay";
+import Page from "./resources/Page";
+import PaymentRequest from "./resources/PaymentRequest";
+import Plans from "./resources/Plans";
+import Products from "./resources/Products";
+import Settlements from "./resources/Settlements";
+import Subaccounts from "./resources/Subaccounts";
+import Subscription from "./resources/Subscription";
+import BulkCharges from "./resources/BulkCharges";
+import Charges from "./resources/Charge";
+import Disputes from "./resources/Disputes";
+import Refunds from "./resources/Refunds";
+import Verification from "./resources/Verification";
+import Miscellaneous from "./resources/Miscellaneous";
 
-export {
-    CustomersApi,
-    TransactionApi,
-    TransferApi,
-    TransferRecipientApi,
-    VirtualAccountApi,
-    ApplePayApi,
-    PageApi,
-    PaymentRequestApi,
-    PlansApi,
-    ProductsApi,
-    SettlementsApi,
-    SubaccountsApi,
-    SubscriptionApi,
-    BulkChargesApi,
-    ChargesApi,
-    DisputesApi,
-    RefundsApi,
-    VerificationApi,
-    MiscellaneousApi,
+export default {
+    Customers,
+    Transaction,
+    Transfer,
+    TransferRecipient,
+    VirtualAccount,
+    ApplePay,
+    Page,
+    PaymentRequest,
+    Plans,
+    Products,
+    Settlements,
+    Subaccounts,
+    Subscription,
+    BulkCharges,
+    Charges,
+    Disputes,
+    Refunds,
+    Verification,
+    Miscellaneous,
 };

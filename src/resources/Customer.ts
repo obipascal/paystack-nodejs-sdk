@@ -6,9 +6,9 @@ import {
     DeactivateAuthorizationBody,
     UpdateCustomerBody,
 } from "../types/customer";
-import { CustomersApi } from "../types";
+import { CustomersInterface } from "../types";
 
-export default class Customers implements CustomersApi {
+export default class Customers implements CustomersInterface {
     private httpClient: AxiosInstance;
 
     /**

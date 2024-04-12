@@ -1,6 +1,6 @@
-import { CustomersApi } from "../src";
+import { Customers } from "../src";
 
-const _customer = new CustomersApi(process.env.PAYSTACK_KEY as string);
+const _customer = new Customers(process.env.PAYSTACK_KEY as string);
 
 describe("Customer", () => {
     // Test for creating a new customer

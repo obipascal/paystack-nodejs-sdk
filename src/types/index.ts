@@ -25,6 +25,7 @@ import {
 } from "./dedicatedVirtualAccount";
 import Customers from "../resources/Customer";
 import Charges from "../resources/Charge";
+import DedicatedVirtualAccounts from "../resources/DedicatedVirtualAccount";
 
 export * from "./applepay";
 export * from "./charge";
@@ -46,13 +47,7 @@ export * from "./transferRecipient";
 export * from "./verification";
 
 // Type interface for ApplePayApi
-export interface ApplePayApi {
-    /**
-     * The Apple Pay API allows you register your application's top-level domain or subdomain.
-     * @param apiKey Paystack API key
-     */
-    constructor(apiKey: string): ApplePayApi;
-
+export interface ApplePayInterface {
     /**
      * Register a top-level domain or subdomain for your Apple Pay integration.
      * @param data Domain name to be registered
@@ -71,13 +66,7 @@ export interface ApplePayApi {
     unregisterDomain(data: ApplePayBody): Promise<AxiosResponse<any, any>>; // Replace "any" with the actual response type
 }
 
-export interface BulkChargesApi {
-    /**
-     * The Bulk Charges API allows you create and manage multiple recurring payments from your customers.
-     * @param apiKey Paystack API key
-     */
-    constructor(apiKey: string): BulkChargesApi;
-
+export interface BulkChargesInterface {
     /**
      * Send an array of objects with authorization codes and amount, using the supported currency format, so we can process transactions as a batch.
      * @param data Bulk charge details
@@ -121,13 +110,7 @@ export interface BulkChargesApi {
     resume(batch_code: string): Promise<AxiosResponse<any, any>>; // Replace "any" with the actual response type
 }
 
-export interface ChargesApi {
-    /**
-     * The Charge API allows you to configure payment channel of your choice when initiating a payment.
-     * @param apiKey Paystack API key
-     */
-    constructor(apiKey: string): Charges;
-
+export interface ChargesInterface {
     /**
      * Initialize a charge
      * @param data Charge details
@@ -174,7 +157,7 @@ export interface ChargesApi {
  * The Customers API allows you create and manage customers on your integration.
  * @param apiKey Paystack API key
  */
-export interface CustomersApi {
+export interface CustomersInterface {
     /**
      * Create a customer on your integration.
      * ___
@@ -228,13 +211,7 @@ export interface CustomersApi {
     ): Promise<AxiosResponse<any, any>>; // Likely doesn't have a specific response structure
 }
 
-export interface DedicatedVirtualAccountsApi {
-    /**
-     * The Dedicated Virtual Account API enables Nigerian merchants to manage unique payment accounts of their customers.
-     * @param apiKey Paystack API key
-     */
-    constructor(apiKey: string): DedicatedVirtualAccountsApi;
-
+export interface DedicatedVirtualAccountsInterface {
     /**
      * Create a dedicated virtual account
      * @param data Account data
