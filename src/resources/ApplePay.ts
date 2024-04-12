@@ -1,6 +1,6 @@
 import { AxiosInstance } from "axios"
 import HttpRequest, { HttpRequestEndpoints } from "../config/request"
-import { ApplePayBody } from "../types/apppay"
+import { ApplePayBody } from "../types/applepay"
 
 export default class ApplePay {
   private httpClient: AxiosInstance

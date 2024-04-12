@@ -1,14 +1,16 @@
 {
   "name": "paystack-sdk",
   "version": "1.0.0",
+  "main": "./lib/cjs/index.js",
+  "module": "./lib/es/index.js",
+  "types": "./lib/es/types/index.d.ts",
   "exports": {
     ".": {
-      "import": "./lib/index.mjs",
-      "require": "./lib/index.js"
+      "import": "./lib/es/index.js",
+      "require": "./lib/cjs/index.js"
     }
   },
   "description": "A comprehensive paystack API sdk for nodejs written in typescript",
-  "main": "src/index.js",
   "scripts": {
     "test": "jest",
     "build:es": "tsc -p tsconfig.es.json",
