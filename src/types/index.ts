@@ -170,14 +170,11 @@ export interface ChargesApi {
      */
     submitAddress(data: SubmitAddressBody): Promise<AxiosResponse<any, any>>;
 }
-
+/**
+ * The Customers API allows you create and manage customers on your integration.
+ * @param apiKey Paystack API key
+ */
 export interface CustomersApi {
-    /**
-     * The Customers API allows you create and manage customers on your integration.
-     * @param apiKey Paystack API key
-     */
-    constructor(apiKey: string): Customers;
-
     /**
      * Create a customer on your integration.
      * ___
