@@ -85,6 +85,122 @@ export const HttpRequestEndpoints = {
     generateUpdateSubLink: "/subscription/:code/manage/link",
     sendUpdateSubLink: "/subscription/:code/manage/email",
   },
+
+  /** The Products API allows you create and manage inventories on your integration. */
+  product: {
+    create: "/product",
+    list: "/product",
+    fetch: "/product/:id",
+    update: "/product/:id",
+  },
+
+  /** Update a payment page details on your integration */
+  paymentPage: {
+    create: "/page",
+    list: "/page",
+    fetch: "/page/:id_or_slug",
+    update: "/page/:id_or_slug",
+    checkSlugAvailability: "/page/check_slug_availability/:slug",
+    addProduct: "/page/:id/product",
+  },
+
+  /** The Payment Requests API allows you manage requests for payment of goods and services. */
+  paymentRequest: {
+    create: "/paymentrequest",
+    list: "/paymentrequest",
+    fetch: "/paymentrequest/:id",
+    update: "/paymentrequest/:id",
+    verify: "/paymentrequest/verify/:code",
+    sendNotification: "/paymentrequest/notify/:code",
+    total: "/paymentrequest/totals",
+    finalize: "/paymentrequest/finalize/:code",
+    archive: "/paymentrequest/archive/:code",
+  },
+
+  /** The Settlements API allows you gain insights into payouts made by Paystack to your bank account. */
+  settlement: {
+    list: "/settlement",
+    listTransactions: "/settlement/:id/transactions",
+  },
+
+  /** The Transfer Recipients API allows you create and manage beneficiaries that you send money to. */
+  transferRecipient: {
+    create: "/transferrecipient",
+    createBulk: "/transferrecipient/bulk",
+    list: "/transferrecipient",
+    fetch: "/transferrecipient/:id_or_code",
+    update: "/transferrecipient/:id_or_code",
+    delete: "/transferrecipient/:id_or_code",
+  },
+
+  /** The Transfers API allows you automate sending money to your customers. */
+  transfer: {
+    initiate: "/transfer",
+    list: "/transfer",
+    fetch: "/transfer/:id_or_code",
+    finalize: "/transfer/finalize_transfer",
+    bulk: "/transfer/bulk",
+    verify: "/transfer/verify/:reference",
+    checkBalance: "/balance",
+    ledger: "/balance/ledger",
+    resendOtp: "/transfer/resend_otp",
+    disableOtp: "/transfer/disable_otp",
+    disableOtpFinalize: "/transfer/disable_otp_finalize",
+    enableOtp: "/transfer/enable_otp",
+  },
+
+  /** The Bulk Charges API allows you create and manage multiple recurring payments from your customers. */
+  bulkCharge: {
+    create: "/bulkcharge",
+    list: "/bulkcharge",
+    fetch: "/bulkcharge/:id_or_code",
+    fetchBatch: "/bulkcharge/:id_or_code/charges",
+    pause: "/bulkcharge/pause/:batch_code",
+    resume: "/bulkcharge/resume/:batch_code",
+  },
+
+  /** The Charge API allows you to configure payment channel of your choice when initiating a payment. */
+  charge: {
+    initialize: "/charge",
+    submitPin: "/charge/submit_pin",
+    submitOtp: "/charge/submit_otp",
+    submitPhone: "/charge/submit_phone",
+    submitBirthday: "/charge/submit_birthday",
+    submitAddress: "/charge/submit_address",
+    checkPendingCharge: "/charge/:reference",
+  },
+
+  /** The Disputes API allows you manage transaction disputes on your integration. */
+  dispute: {
+    list: "/dispute",
+    fetch: "/dispute/:id",
+    listTransactionDispute: "/dispute/transaction/:id",
+    update: "/dispute/:id",
+    addEvidence: "/dispute/:id/evidence",
+    fetchUploadUrl: "/dispute/:id/upload_url",
+    resolve: "/dispute/:id/resolve",
+    export: "/dispute/export",
+  },
+
+  /** The Refunds API allows you create and manage transaction refunds. */
+  refund: {
+    create: "/refund",
+    list: "/refund",
+    fetch: "/refund/:id",
+  },
+
+  /** The Verification API allows you perform KYC processes. */
+
+  verification: {
+    resolveAccount: "/bank/resolve",
+    validateBank: "/bank/validate",
+    resolveCard: "/decision/bin/:bin",
+  },
+
+  /** The Miscellaneous API are supporting APIs that can be used to provide more details to other APIs. */
+  miscellaneous: {
+    listBanks: "/bank",
+  },
 }
 
 /**

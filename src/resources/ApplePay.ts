@@ -1,8 +1,8 @@
 import { AxiosInstance } from "axios"
 import HttpRequest, { HttpRequestEndpoints } from "../config/request"
-import { AppPayBody } from "../types/apppay"
+import { ApplePayBody } from "../types/apppay"
 
-export default class AppPay {
+export default class ApplePay {
   private httpClient: AxiosInstance
 
   /**
@@ -17,7 +17,7 @@ export default class AppPay {
    * Register a top-level domain or subdomain for your Apple Pay integration.
    * @param domainName Domain name to be registered
    */
-  async registerDomain(data: AppPayBody) {
+  async registerDomain(data: ApplePayBody) {
     return await this.httpClient.post(HttpRequestEndpoints.applePay.registerDomain, data)
   }
 
@@ -33,7 +33,7 @@ export default class AppPay {
    * @param data request body
    */
 
-  async unregisterDomain(data: AppPayBody) {
+  async unregisterDomain(data: ApplePayBody) {
     return await this.httpClient.delete(HttpRequestEndpoints.applePay.unregisterDomain, { data })
   }
 }
