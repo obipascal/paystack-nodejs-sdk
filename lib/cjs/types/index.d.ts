@@ -4,7 +4,6 @@ import { PaginationParams } from "./const";
 import { BulkChargeBody, ChargeBody, SubmitAddressBody, SubmitBirthdayBody, SubmitOtpBody, SubmitPINBody, SubmitPhoneBody } from "./charge";
 import { BlacklistOrWhitelistCustomerBody, CreateCustomerBody, DeactivateAuthorizationBody, UpdateCustomerBody } from "./customer";
 import { AssignDedicatedVirtualAccountBody, CreateDedicatedVirtualAccountBody, DedicatedVirtualAccountQueryParams, DedicatedVirtualAccountSplitTransactionBody, RemoveSplitDedicatedVirtualAccountBody } from "./dedicatedVirtualAccount";
-import Customers from "../resources/Customer";
 import Charges from "../resources/Charge";
 export * from "./applepay";
 export * from "./charge";
@@ -125,12 +124,11 @@ export interface ChargesApi {
      */
     submitAddress(data: SubmitAddressBody): Promise<AxiosResponse<any, any>>;
 }
+/**
+ * The Customers API allows you create and manage customers on your integration.
+ * @param apiKey Paystack API key
+ */
 export interface CustomersApi {
-    /**
-     * The Customers API allows you create and manage customers on your integration.
-     * @param apiKey Paystack API key
-     */
-    constructor(apiKey: string): Customers;
     /**
      * Create a customer on your integration.
      * ___
