@@ -22,3 +22,43 @@ A Node.js package that facilitates type checking and offers compatibility with b
 - Transfer
 - TransferRecipient
 - Verification
+
+### Installation
+
+```
+npm install paystack-sdk
+```
+
+or
+
+```
+yarn add paystack-sdk
+```
+
+### Usage
+
+```js
+// import the resource you want to consume
+import { CustomersApi } from "paystack-sdk"
+
+// initialize the resouce with you paystack secret key
+const customersResource = CustomersApi(process.env.YOUR_PAYSTACK_SECRET_KEY)
+
+// Now create your first customer
+try {
+  const customer = await _customer.create({
+    email: "example@gmail.com",
+    first_name: "John",
+    last_name: "Doe",
+    phone: "+2348123456789",
+  })
+
+  if (customer?.status) {
+    expect(customer?.data?.email).toBe("example@gmail.com")
+  } else {
+    throw new Error("An error occurred while creating a new customer")
+  }
+} catch (error) {
+  throw new Error("An error occurred while creating a new customer")
+}
+```
