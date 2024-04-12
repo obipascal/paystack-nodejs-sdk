@@ -1,3 +1,4 @@
+import { AxiosInstance, AxiosResponse } from "axios";
 import { Currencies } from "./const";
 export type RefundBody = {
     /** Transaction reference or id */
@@ -11,3 +12,25 @@ export type RefundBody = {
     /** Merchant reason */
     merchant_note?: string;
 };
+export declare class Refunds {
+    readonly httpClient: AxiosInstance;
+    /**
+     * The Refunds API allows you create and manage transaction refunds.
+     * @param apiKey Paystack API key
+     */
+    constructor(apiKey: string);
+    /**
+     * Create a refund
+     * @param data Refund details
+     */
+    create(data: RefundBody): Promise<AxiosResponse<any, any>>;
+    /**
+     * List refunds
+     */
+    list(): Promise<AxiosResponse<any, any>>;
+    /**
+     * Fetch a refund
+     * @param id Refund ID
+     */
+    fetch(id: string): Promise<AxiosResponse<any, any>>;
+}

@@ -1,3 +1,4 @@
+import { AxiosInstance, AxiosResponse } from "axios";
 export type CreateSubaccountBody = {
     /** Name of business for subaccount */
     business_name: string;
@@ -42,3 +43,31 @@ export type UpdateSubaccountBody = {
     /** Stringified JSON object. Add a custom_fields attribute which has an array of objects if you would like the fields to be added to your transaction when displayed on the dashboard. Sample: {"custom_fields":[{"display_name":"Cart ID","variable_name": "cart_id","value": "8393"}]} */
     metadata?: Record<string, any>;
 };
+export declare class Subaccounts {
+    readonly httpClient: AxiosInstance;
+    /**
+     * The Subaccounts API allows you create and manage subaccounts on your integration. Subaccounts can be used to split payment between two accounts (your main account and a sub account).
+     * @param apiKey Paystack API key
+     */
+    constructor(apiKey: string);
+    /**
+     * Create a new subaccount
+     * @param data request body
+     */
+    create(data: CreateSubaccountBody): Promise<AxiosResponse<any, any>>;
+    /**
+     * List all subaccounts on your integration
+     */
+    list(): Promise<AxiosResponse<any, any>>;
+    /**
+     * Fetch a subaccount
+     * @param id_or_code Subaccount ID or Code
+     */
+    fetch(id_or_code: string): Promise<AxiosResponse<any, any>>;
+    /**
+     * Update a subaccount
+     * @param id_or_code Subaccount ID or Code
+     * @param data request body
+     */
+    update(id_or_code: string, data: UpdateSubaccountBody): Promise<AxiosResponse<any, any>>;
+}

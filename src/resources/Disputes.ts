@@ -3,6 +3,7 @@ import HttpRequest, { HttpRequestEndpoints } from "../config/request";
 import {
     AddEvidenceBody,
     DisputeParams,
+    GetUploadUrlParams,
     UpdateDisputeBody,
 } from "../types/dispute";
 
@@ -79,7 +80,7 @@ export class Disputes {
      * @param id Dispute ID
      * @param params Upload options
      */
-    async fetchUploadUrl(id: string, params: { upload_filename: string }) {
+    async fetchUploadUrl(id: string, params: GetUploadUrlParams) {
         return await this.httpClient.get(
             HttpRequestEndpoints.dispute.fetchUploadUrl.replace(":id", id),
             { params }

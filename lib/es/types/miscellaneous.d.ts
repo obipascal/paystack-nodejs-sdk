@@ -1,3 +1,4 @@
+import { AxiosInstance, AxiosResponse } from "axios";
 import { Currencies } from "./const";
 export interface MiscellaneousParams {
     /** The country from which to obtain the list of supported banks. e.g country=ghana or country=nigeria */
@@ -22,4 +23,20 @@ export interface MiscellaneousParams {
     type?: string;
     /** One of the supported currency */
     currency?: Currencies;
+}
+export declare class Miscellaneous {
+    readonly httpClient: AxiosInstance;
+    /**
+     * The Miscellaneous API allows you perform miscellaneous operations.
+     * @param apiKey Paystack API key
+     */
+    constructor(apiKey: string);
+    /**
+     * List all supported banks
+     * _________________________________________________________
+     * Get a list of all supported banks and their properties
+     * @param accountNumber Account number
+     * @param bankCode Bank code
+     */
+    banks(params?: MiscellaneousParams): Promise<AxiosResponse<any, any>>;
 }

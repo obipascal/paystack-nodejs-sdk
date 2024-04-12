@@ -39,10 +39,10 @@ yarn add paystack-sdk
 
 ```js
 // import the resource you want to consume
-import { CustomersApi } from "@obipascal/paystack-sdk";
+import { Customers } from "@obipascal/paystack-sdk";
 
 // initialize the resouce with your paystack secret key
-const customersResource = CustomersApi(process.env.YOUR_PAYSTACK_SECRET_KEY);
+const customersResource = Customers(process.env.YOUR_PAYSTACK_SECRET_KEY);
 
 // Now create your first customer
 const createNewCustomer = async () => {

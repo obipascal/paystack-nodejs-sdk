@@ -1,3 +1,4 @@
+import { AxiosInstance, AxiosResponse } from "axios";
 export type PageBody = {
     /** Name of page */
     name: string;
@@ -29,3 +30,42 @@ export type UpdatePageBody = {
 export type AddProductBody = {
     product: Array<string>;
 };
+export declare class Pages {
+    readonly httpClient: AxiosInstance;
+    /**
+     * Update a payment page details on your integration
+     * @param apiKey Paystack API key
+     */
+    constructor(apiKey: string);
+    /**
+     * Create a payment page on your integration
+     * @param data request body
+     */
+    create(data: PageBody): Promise<AxiosResponse<any, any>>;
+    /**
+     * List payment pages available on your integration
+     */
+    list(): Promise<AxiosResponse<any, any>>;
+    /**
+     * Get details of a payment page on your integration
+     * @param id_or_slug Page ID or Slug
+     */
+    fetch(id_or_slug: string): Promise<AxiosResponse<any, any>>;
+    /**
+     * Update a payment page details on your integration
+     * @param id_or_slug Page ID or Slug
+     * @param data request body
+     */
+    update(id_or_slug: string, data: UpdatePageBody): Promise<AxiosResponse<any, any>>;
+    /**
+     * Check the availability of a slug for a payment page
+     * @param slug Page slug
+     */
+    checkSlugAvailability(slug: string): Promise<AxiosResponse<any, any>>;
+    /**
+     * Add products to a payment page
+     * @param id Page ID
+     * @param data request body
+     */
+    addProduct(id: string, data: AddProductBody): Promise<AxiosResponse<any, any>>;
+}

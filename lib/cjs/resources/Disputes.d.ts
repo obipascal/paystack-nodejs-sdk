@@ -1,4 +1,4 @@
-import { AddEvidenceBody, DisputeParams, UpdateDisputeBody } from "../types/dispute";
+import { AddEvidenceBody, DisputeParams, GetUploadUrlParams, UpdateDisputeBody } from "../types/dispute";
 export declare class Disputes {
     private httpClient;
     /**
@@ -38,9 +38,7 @@ export declare class Disputes {
      * @param id Dispute ID
      * @param params Upload options
      */
-    fetchUploadUrl(id: string, params: {
-        upload_filename: string;
-    }): Promise<import("axios").AxiosResponse<any, any>>;
+    fetchUploadUrl(id: string, params: GetUploadUrlParams): Promise<import("axios").AxiosResponse<any, any>>;
     /**
      * Resolve a dispute
      * @param id Dispute ID
