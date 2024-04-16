@@ -26,13 +26,13 @@ A Node.js package that facilitates type checking and offers compatibility with b
 ### Installation
 
 ```
-npm install paystack-sdk
+npm install @obipascal/paystack-sdk
 ```
 
 or
 
 ```
-yarn add paystack-sdk
+yarn add @obipascal/paystack-sdk
 ```
 
 ### Usage

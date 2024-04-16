@@ -1,3 +1,4 @@
 node_modules
 .env
 jest.env.js
+.npmrc
