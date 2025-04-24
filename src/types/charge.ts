@@ -47,6 +47,8 @@ export type ChargeBody = {
         Zenith Bank	966 */
         type: "737" | "919" | "822" | "966";
     };
+    /** Plan code  */
+    plan: string 
     /**
      * Mobile details (don't send if charging an authorization code, bank or card)
      * _______________________________________________________________
