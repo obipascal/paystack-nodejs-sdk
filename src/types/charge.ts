@@ -48,7 +48,7 @@ export type ChargeBody = {
         type: "737" | "919" | "822" | "966";
     };
     /** Plan code  */
-    plan: string 
+    plan?: string 
     /**
      * Mobile details (don't send if charging an authorization code, bank or card)
      * _______________________________________________________________
