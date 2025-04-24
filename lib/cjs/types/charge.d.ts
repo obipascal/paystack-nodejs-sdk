@@ -59,6 +59,22 @@ export type ChargeBody = {
     };
     /** This is the unique identifier of the device a user uses in making payment. Only -, .`, = and alphanumeric characters allowed. */
     device_id?: string;
+    /** Fully qualified url, e.g. https://example.com/ . Use this to override the callback url provided on the dashboard for this transaction */
+    callback_url?: string;
+    /** The transaction currency. Defaults to your integration currency. */
+    currency?: string;
+    /** Number of times to charge customer during subscription to plan */
+    invoice_limit?: number;
+    /** An array of payment channels to control what channels you want to make available to the user to make a payment with. Available channels include: ["card", "bank", "apple_pay", "ussd", "qr", "mobile_money", "bank_transfer", "eft"] */
+    channels?: Array<string>;
+    /** The split code of the transaction split. e.g. SPL_98WF13Eb3w */
+    split_code?: string;
+    /** The code for the subaccount that owns the payment. e.g. ACCT_8f4s1eq7ml6rlzj */
+    subaccount?: string;
+    /** An amount used to override the split configuration for a single split payment. If set, the amount specified goes to the main account regardless of the split configuration. */
+    transaction_charge?: number;
+    /** Use this param to indicate who bears the transaction charges. Allowed values are: account or subaccount (defaults to account). */
+    bearer?: "account" | "subaccount" | string;
 };
 export type SubmitPINBody = {
     /** PIN submitted by user */
