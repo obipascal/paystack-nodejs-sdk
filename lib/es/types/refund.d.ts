@@ -12,6 +12,63 @@ export type RefundBody = {
     /** Merchant reason */
     merchant_note?: string;
 };
+export interface RefundTransactionData {
+    id: number;
+    domain: string;
+    reference: string;
+    amount: number;
+    paid_at: string;
+    channel: string;
+    currency: string;
+    authorization: {
+        exp_month: string | null;
+        exp_year: string | null;
+        account_name: string | null;
+    };
+    customer: {
+        international_format_phone: string | null;
+    };
+}
+export interface RefundData {
+    id: number;
+    integration: number;
+    domain: string;
+    transaction: number | RefundTransactionData;
+    dispute: number | null;
+    settlement: number | null;
+    amount: number;
+    deducted_amount?: number;
+    currency: string;
+    channel: string;
+    fully_deducted?: boolean | number;
+    status: string;
+    refunded_by: string;
+    refunded_at: string;
+    expected_at: string;
+    customer_note?: string | null;
+    merchant_note?: string | null;
+    createdAt: string;
+    updatedAt: string;
+}
+export interface RefundCreateResponse extends AxiosResponse {
+    message: string;
+    data: RefundData;
+}
+export interface RefundListResponse extends AxiosResponse {
+    message: string;
+    data: RefundData[];
+    meta: {
+        total: number;
+        skipped: number;
+        perPage: number;
+        page: number;
+        pageCount: number;
+    };
+}
+export interface RefundFetchResponse extends AxiosResponse {
+    message: string;
+    data: RefundData;
+}
 export declare class Refunds {
     readonly httpClient: AxiosInstance;
     /**
@@ -23,14 +80,14 @@ export declare class Refunds {
      * Create a refund
      * @param data Refund details
      */
-    create(data: RefundBody): Promise<AxiosResponse<any, any>>;
+    create(data: RefundBody): Promise<RefundCreateResponse>;
     /**
      * List refunds
      */
-    list(): Promise<AxiosResponse<any, any>>;
+    list(): Promise<RefundListResponse>;
     /**
      * Fetch a refund
      * @param id Refund ID
      */
-    fetch(id: string): Promise<AxiosResponse<any, any>>;
+    fetch(id: string): Promise<RefundFetchResponse>;
 }

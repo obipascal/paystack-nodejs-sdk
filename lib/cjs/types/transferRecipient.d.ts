@@ -28,6 +28,72 @@ export type UpdateRecipientBody = {
     /** Email address of the recipient */
     email?: string;
 };
+export interface RecipientDetails {
+    authorization_code?: string;
+    account_number?: string;
+    account_name: string | null;
+    bank_code?: string;
+    bank_name?: string;
+}
+export interface RecipientData {
+    active: boolean;
+    createdAt: string;
+    currency: string;
+    domain: string;
+    id: number;
+    integration: number;
+    name: string;
+    recipient_code: string;
+    type: string;
+    updatedAt: string;
+    is_deleted: boolean;
+    details: RecipientDetails;
+    metadata: Record<string, any> | null;
+    description?: string;
+    email?: string;
+}
+export interface TransferRecipientCreateResponse extends AxiosResponse {
+    message: string;
+    data: RecipientData;
+}
+export interface BulkRecipientSuccess extends RecipientData {
+}
+export interface BulkRecipientError {
+    account_number: string;
+    name: string;
+    bank_code: string;
+    message: string;
+}
+export interface BulkRecipientData {
+    success: BulkRecipientSuccess[];
+    errors: BulkRecipientError[];
+}
+export interface TransferRecipientBulkResponse extends AxiosResponse {
+    message: string;
+    data: BulkRecipientData;
+}
+export interface TransferRecipientListResponse extends AxiosResponse {
+    message: string;
+    data: RecipientData[];
+    meta: {
+        total: number;
+        skipped: number;
+        perPage: number;
+        page: number;
+        pageCount: number;
+    };
+}
+export interface TransferRecipientFetchResponse extends AxiosResponse {
+    message: string;
+    data: RecipientData;
+}
+export interface TransferRecipientUpdateResponse extends AxiosResponse {
+    message: string;
+    data: RecipientData;
+}
+export interface TransferRecipientDeleteResponse extends AxiosResponse {
+    message: string;
+}
 export declare class TransferRecipients {
     readonly httpClient: AxiosInstance;
     /**
@@ -39,30 +105,30 @@ export declare class TransferRecipients {
      * Creates a new recipient. A duplicate account number will lead to the retrieval of the existing record.
      * @param data Transfer recipient details
      */
-    create(data: TransferRecipientBody): Promise<AxiosResponse<any, any>>;
+    create(data: TransferRecipientBody): Promise<TransferRecipientCreateResponse>;
     /**
      * Create multiple transfer recipients in batches. A duplicate account number will lead to the retrieval of the existing record.
      * @param data List of transfer recipient details
      */
-    createBulk(data: BatchRecipientBody): Promise<AxiosResponse<any, any>>;
+    createBulk(data: BatchRecipientBody): Promise<TransferRecipientBulkResponse>;
     /**
      * List transfer recipients available on your integration
      */
-    list(): Promise<AxiosResponse<any, any>>;
+    list(): Promise<TransferRecipientListResponse>;
     /**
      * Fetch the details of a transfer recipient
      * @param id_or_code Transfer recipient ID or code
      */
-    fetch(id_or_code: string): Promise<AxiosResponse<any, any>>;
+    fetch(id_or_code: string): Promise<TransferRecipientFetchResponse>;
     /**
      * Update transfer recipients available on your integration
      * @param id_or_code Transfer recipient ID or code
      * @param data Updated transfer recipient details
      */
-    update(id_or_code: string, data: TransferRecipientBody): Promise<AxiosResponse<any, any>>;
+    update(id_or_code: string, data: TransferRecipientBody): Promise<TransferRecipientUpdateResponse>;
     /**
      * Delete a transfer recipient (sets the transfer recipient to inactive)
      * @param id_or_code Transfer recipient ID or code
      */
-    delete(id_or_code: string): Promise<AxiosResponse<any, any>>;
+    delete(id_or_code: string): Promise<TransferRecipientDeleteResponse>;
 }

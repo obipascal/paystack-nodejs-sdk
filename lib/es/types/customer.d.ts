@@ -51,6 +51,61 @@ export type DeactivateAuthorizationBody = {
     /** Authorization code to be deactivated */
     authorization_code: string;
 };
+export interface CustomerData {
+    integration?: number;
+    first_name: string | null;
+    last_name: string | null;
+    email: string;
+    phone: string | null;
+    metadata: Record<string, any> | null;
+    domain: string;
+    customer_code: string;
+    risk_action: string;
+    id: number;
+    createdAt: string;
+    updatedAt: string;
+    identified?: boolean;
+    identifications?: any;
+    transactions?: any[];
+    subscriptions?: any[];
+    authorizations?: any[];
+    total_transactions?: number;
+    total_transaction_value?: any[];
+    dedicated_account?: any;
+}
+export interface CustomerCreateResponse extends AxiosResponse {
+    message: string;
+    data: CustomerData;
+}
+export interface CustomerListResponse extends AxiosResponse {
+    message: string;
+    data: CustomerData[];
+    meta?: {
+        total: number;
+        skipped: number;
+        perPage: number;
+        page: number;
+        pageCount: number;
+    };
+}
+export interface CustomerFetchResponse extends AxiosResponse {
+    message: string;
+    data: CustomerData;
+}
+export interface CustomerUpdateResponse extends AxiosResponse {
+    message: string;
+    data: CustomerData;
+}
+export interface CustomerValidateResponse extends AxiosResponse {
+    message: string;
+}
+export interface CustomerRiskActionResponse extends AxiosResponse {
+    message: string;
+    data: CustomerData;
+}
+export interface CustomerDeactivateAuthorizationResponse extends AxiosResponse {
+    message: string;
+}
 export declare class Customers {
     /**
      * The Customers API allows you create and manage customers on your integration.
@@ -63,36 +118,36 @@ export declare class Customers {
      * The first_name, last_name and phone are optional parameters. However, when creating a customer that would be assigned a Dedicated Virtual Account and your business catgeory falls under Betting, Financial services, and General Service, then these parameters become compulsory.
      * @param data Customer data
      */
-    create(data: CreateCustomerBody): Promise<AxiosResponse<any, any>>;
+    create(data: CreateCustomerBody): Promise<CustomerCreateResponse>;
     /**
      * List customers available on your integration.
      */
-    list(): Promise<AxiosResponse<any, any>>;
+    list(): Promise<CustomerListResponse>;
     /**
      * Get details of a customer on your integration.
      * @param email_or_code Customer's email or code
      */
-    fetch(email_or_code: string): Promise<AxiosResponse<any, any>>;
+    fetch(email_or_code: string): Promise<CustomerFetchResponse>;
     /**
      * Update a customer's details on your integration
      * @param code Customer's code
      * @param data Customer data
      */
-    update(code: string, data: UpdateCustomerBody): Promise<AxiosResponse<any, any>>;
+    update(code: string, data: UpdateCustomerBody): Promise<CustomerUpdateResponse>;
     /**
      * Validate a customer's identity
      * @param code Customer's code
      * @param data Customer identification data
      */
-    validate(code: string, data: any): Promise<AxiosResponse<any, any>>;
+    validate(code: string, data: ValidateCustomerBody): Promise<CustomerValidateResponse>;
     /**
      * Whitelist or blacklist a customer on your integration
      * @param data Customer risk action data
      */
-    blacklistOrWhitelistCustomer(data: BlacklistOrWhitelistCustomerBody): Promise<AxiosResponse<any, any>>;
+    blacklistOrWhitelistCustomer(data: BlacklistOrWhitelistCustomerBody): Promise<CustomerRiskActionResponse>;
     /**
      * Deactivate an authorization
      * @param data Authorization deactivation data
      */
-    deactivateAuthorization(data: DeactivateAuthorizationBody): Promise<AxiosResponse<any, any>>;
+    deactivateAuthorization(data: DeactivateAuthorizationBody): Promise<CustomerDeactivateAuthorizationResponse>;
 }

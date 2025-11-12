@@ -24,6 +24,30 @@ export interface MiscellaneousParams {
     /** One of the supported currency */
     currency?: Currencies;
 }
+export interface BankData {
+    id: number;
+    name: string;
+    slug: string;
+    code: string;
+    longcode: string;
+    gateway: string | null;
+    pay_with_bank: boolean;
+    active: boolean;
+    is_deleted: boolean;
+    country: string;
+    currency: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+}
+export interface BankListResponse extends AxiosResponse {
+    message: string;
+    data: BankData[];
+    meta?: {
+        next: string | null;
+        previous: string | null;
+    };
+}
 export declare class Miscellaneous {
     readonly httpClient: AxiosInstance;
     /**
@@ -38,5 +62,5 @@ export declare class Miscellaneous {
      * @param accountNumber Account number
      * @param bankCode Bank code
      */
-    banks(params?: MiscellaneousParams): Promise<AxiosResponse<any, any>>;
+    banks(params?: MiscellaneousParams): Promise<BankListResponse>;
 }

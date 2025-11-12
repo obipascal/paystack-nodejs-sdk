@@ -99,6 +99,143 @@ export type RemoveSubaccountFromSplitBody = {
     /** This is the sub account code */
     subaccount: string;
 };
+export interface TransactionInitializeData {
+    authorization_url: string;
+    access_code: string;
+    reference: string;
+}
+export interface TransactionInitializeResponse extends AxiosResponse {
+    message: string;
+    data: TransactionInitializeData;
+}
+export interface TransactionAuthorization {
+    authorization_code: string;
+    bin: string;
+    last4: string;
+    exp_month: string;
+    exp_year: string;
+    channel: string;
+    card_type: string;
+    bank: string;
+    country_code: string;
+    brand: string;
+    reusable: boolean;
+    signature: string;
+    account_name: string | null;
+}
+export interface TransactionCustomer {
+    id: number;
+    first_name: string | null;
+    last_name: string | null;
+    email: string;
+    customer_code: string;
+    phone: string | null;
+    metadata: Record<string, any> | null;
+    risk_action: string;
+    international_format_phone: string | null;
+}
+export interface TransactionData {
+    id: number;
+    domain: string;
+    status: string;
+    reference: string;
+    receipt_number: string | null;
+    amount: number;
+    message: string | null;
+    gateway_response: string;
+    helpdesk_link: string | null;
+    paid_at: string;
+    created_at: string;
+    channel: string;
+    currency: string;
+    ip_address: string;
+    metadata: Record<string, any> | null;
+    log: any | null;
+    fees: number;
+    fees_split: any | null;
+    authorization: TransactionAuthorization;
+    customer: TransactionCustomer;
+    plan: any | null;
+    split: Record<string, any>;
+    order_id: string | null;
+    paidAt: string;
+    createdAt: string;
+    requested_amount: number;
+    pos_transaction_data: any | null;
+    source: any | null;
+    fees_breakdown: any | null;
+    transaction_date: string;
+    plan_object: Record<string, any>;
+    subaccount: Record<string, any>;
+}
+export interface TransactionVerifyResponse extends AxiosResponse {
+    message: string;
+    data: TransactionData;
+}
+export interface TransactionListResponse extends AxiosResponse {
+    message: string;
+    data: TransactionData[];
+    meta: {
+        total: number;
+        skipped: number;
+        perPage: number;
+        page: number;
+        pageCount: number;
+    };
+}
+export interface TransactionFetchResponse extends AxiosResponse {
+    message: string;
+    data: TransactionData;
+}
+export interface TransactionChargeAuthorizationResponse extends AxiosResponse {
+    message: string;
+    data: TransactionData;
+}
+export interface TransactionTimelineHistory {
+    type: string;
+    message: string;
+    time: number;
+}
+export interface TransactionTimelineData {
+    start_time: number;
+    time_spent: number;
+    attempts: number;
+    errors: number;
+    success: boolean;
+    mobile: boolean;
+    input: any[];
+    history: TransactionTimelineHistory[];
+}
+export interface TransactionTimelineResponse extends AxiosResponse {
+    message: string;
+    data: TransactionTimelineData;
+}
+export interface TransactionTotalVolume {
+    currency: string;
+    amount: number;
+}
+export interface TransactionTotalsData {
+    total_transactions: number;
+    total_volume: number;
+    total_volume_by_currency: TransactionTotalVolume[];
+    pending_transfers: number;
+    pending_transfers_by_currency: TransactionTotalVolume[];
+}
+export interface TransactionTotalsResponse extends AxiosResponse {
+    message: string;
+    data: TransactionTotalsData;
+}
+export interface TransactionExportData {
+    path: string;
+}
+export interface TransactionExportResponse extends AxiosResponse {
+    message: string;
+    data: TransactionExportData;
+}
+export interface TransactionPartialDebitResponse extends AxiosResponse {
+    message: string;
+    data: TransactionData;
+}
 export declare class Transactions {
     readonly httpClient: AxiosInstance;
     /**
@@ -110,43 +247,107 @@ export declare class Transactions {
      * Initialize a transaction from your backend
      * @param data Transaction initialization data
      */
-    initialize(data: InitializeTransactionBody): Promise<AxiosResponse<any, any>>;
+    initialize(data: InitializeTransactionBody): Promise<TransactionInitializeResponse>;
     /**
      * Confirm the status of a transaction
      * @param reference Transaction reference
      */
-    verify(reference: string): Promise<AxiosResponse<any, any>>;
+    verify(reference: string): Promise<TransactionVerifyResponse>;
     /**
      * List transactions carried out on your integration
      */
-    list(): Promise<AxiosResponse<any, any>>;
+    list(): Promise<TransactionListResponse>;
     /**
      * Get details of a transaction carried out on your integration
      * @param id Transaction ID
      */
-    single(id: string): Promise<AxiosResponse<any, any>>;
+    single(id: string): Promise<TransactionFetchResponse>;
     /**
      * All authorizations marked as reusable can be charged with this endpoint whenever you need to receive payments
      * @param data Charge authorization data
      */
-    chargeAuthorization(data: ChargeAuthorizationBody): Promise<AxiosResponse<any, any>>;
+    chargeAuthorization(data: ChargeAuthorizationBody): Promise<TransactionChargeAuthorizationResponse>;
     /**
      * View the timeline of a transaction
      * @param id_or_reference Transaction ID or reference
      */
-    timeline(id_or_reference: string): Promise<AxiosResponse<any, any>>;
+    timeline(id_or_reference: string): Promise<TransactionTimelineResponse>;
     /**
      * Total amount received on your account
      */
-    total(): Promise<AxiosResponse<any, any>>;
+    total(): Promise<TransactionTotalsResponse>;
     /**
      * Export a list of transactions carried out on your integration
      */
-    export(): Promise<AxiosResponse<any, any>>;
+    export(): Promise<TransactionExportResponse>;
     /**
      * Retrieve part of a payment from a customer
      */
-    partialDebit(data: PartialDebitBody): Promise<AxiosResponse<any, any>>;
+    partialDebit(data: PartialDebitBody): Promise<TransactionPartialDebitResponse>;
+}
+export interface SplitSubaccountData {
+    subaccount: {
+        id: number;
+        subaccount_code: string;
+        business_name: string;
+        description: string;
+        primary_contact_name: string | null;
+        primary_contact_email: string | null;
+        primary_contact_phone: string | null;
+        metadata: Record<string, any> | null;
+        percentage_charge: number;
+        is_verified: boolean;
+        settlement_bank: string;
+        account_number: string;
+    };
+    share: number;
+}
+export interface TransactionSplitData {
+    id: number;
+    name: string;
+    type: string;
+    currency: string;
+    integration: number;
+    domain: string;
+    split_code: string;
+    active: boolean;
+    bearer_type: string;
+    bearer_subaccount: string | null;
+    createdAt: string;
+    updatedAt: string;
+    is_dynamic: boolean;
+    subaccounts: SplitSubaccountData[];
+    total_subaccounts: number;
+}
+export interface TransactionSplitCreateResponse extends AxiosResponse {
+    message: string;
+    data: TransactionSplitData;
+}
+export interface TransactionSplitListResponse extends AxiosResponse {
+    message: string;
+    data: TransactionSplitData[];
+    meta: {
+        total: number;
+        skipped: number;
+        perPage: number;
+        page: number;
+        pageCount: number;
+    };
+}
+export interface TransactionSplitFetchResponse extends AxiosResponse {
+    message: string;
+    data: TransactionSplitData;
+}
+export interface TransactionSplitUpdateResponse extends AxiosResponse {
+    message: string;
+    data: TransactionSplitData;
+}
+export interface TransactionSplitAddSubaccountResponse extends AxiosResponse {
+    message: string;
+    data: TransactionSplitData;
+}
+export interface TransactionSplitRemoveSubaccountResponse extends AxiosResponse {
+    message: string;
 }
 export declare class TransactionSplit {
     readonly httpClient: AxiosInstance;
@@ -159,32 +360,32 @@ export declare class TransactionSplit {
      * Create a split payment on your integration
      * @param data Transaction split data
      */
-    create(data: TransactionSplitBody): Promise<AxiosResponse<any, any>>;
+    create(data: TransactionSplitBody): Promise<TransactionSplitCreateResponse>;
     /**
      * List the transaction splits available on your integration
      */
-    list(): Promise<AxiosResponse<any, any>>;
+    list(): Promise<TransactionSplitListResponse>;
     /**
      * Get details of a split on your integration
      * @param id Transaction split ID
      */
-    fetch(id: string): Promise<AxiosResponse<any, any>>;
+    fetch(id: string): Promise<TransactionSplitFetchResponse>;
     /**
      * Update a transaction split details on your integration
      * @param id Transaction split ID
      * @param data Transaction split data
      */
-    update(id: string, data: UpdateSplitTransnactionBody): Promise<AxiosResponse<any, any>>;
+    update(id: string, data: UpdateSplitTransnactionBody): Promise<TransactionSplitUpdateResponse>;
     /**
      * Add a Subaccount to a Transaction Split, or update the share of an existing Subaccount in a Transaction Split
      * @param id Transaction split ID
      * @param data Split subaccount data
      */
-    addOrUpdateSplitSubaccount(id: string, data: SplitSubaccountBody): Promise<AxiosResponse<any, any>>;
+    addOrUpdateSplitSubaccount(id: string, data: SplitSubaccountBody): Promise<TransactionSplitAddSubaccountResponse>;
     /**
      * Remove a subaccount from a transaction split
      * @param id Transaction split ID
      * @param subaccount Subaccount code
      */
-    removeSplitSubaccount(id: string, data: RemoveSubaccountFromSplitBody): Promise<AxiosResponse<any, any>>;
+    removeSplitSubaccount(id: string, data: RemoveSubaccountFromSplitBody): Promise<TransactionSplitRemoveSubaccountResponse>;
 }

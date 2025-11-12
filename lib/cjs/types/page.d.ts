@@ -30,6 +30,77 @@ export type UpdatePageBody = {
 export type AddProductBody = {
     product: Array<string>;
 };
+export interface PageProduct {
+    product_id: number;
+    name: string;
+    description: string;
+    product_code: string | null;
+    page: number;
+    price: number;
+    currency: string;
+    quantity: number;
+    type: string;
+    features: any | null;
+    is_shippable: boolean;
+    domain: string;
+    integration: number;
+    active: boolean;
+}
+export interface PageData {
+    id: number;
+    name: string;
+    description: string | null;
+    amount: number | null;
+    split_code: string | null;
+    integration: number;
+    domain: string;
+    slug: string;
+    currency: string;
+    type: string;
+    redirect_url: string | null;
+    success_message: string | null;
+    collect_phone: boolean;
+    active: boolean;
+    published: boolean;
+    migrate: boolean | null;
+    notification_email: string | null;
+    metadata: Record<string, any> | null;
+    custom_fields: any[];
+    plan?: number | null;
+    createdAt: string;
+    updatedAt: string;
+    products?: PageProduct[];
+}
+export interface PageCreateResponse extends AxiosResponse {
+    message: string;
+    data: PageData;
+}
+export interface PageListResponse extends AxiosResponse {
+    message: string;
+    data: PageData[];
+    meta: {
+        total: number;
+        skipped: number;
+        perPage: number;
+        page: number;
+        pageCount: number;
+    };
+}
+export interface PageFetchResponse extends AxiosResponse {
+    message: string;
+    data: PageData;
+}
+export interface PageUpdateResponse extends AxiosResponse {
+    message: string;
+    data: PageData;
+}
+export interface PageCheckSlugResponse extends AxiosResponse {
+    message: string;
+}
+export interface PageAddProductResponse extends AxiosResponse {
+    message: string;
+    data: PageData;
+}
 export declare class Pages {
     readonly httpClient: AxiosInstance;
     /**
@@ -41,31 +112,31 @@ export declare class Pages {
      * Create a payment page on your integration
      * @param data request body
      */
-    create(data: PageBody): Promise<AxiosResponse<any, any>>;
+    create(data: PageBody): Promise<PageCreateResponse>;
     /**
      * List payment pages available on your integration
      */
-    list(): Promise<AxiosResponse<any, any>>;
+    list(): Promise<PageListResponse>;
     /**
      * Get details of a payment page on your integration
      * @param id_or_slug Page ID or Slug
      */
-    fetch(id_or_slug: string): Promise<AxiosResponse<any, any>>;
+    fetch(id_or_slug: string): Promise<PageFetchResponse>;
     /**
      * Update a payment page details on your integration
      * @param id_or_slug Page ID or Slug
      * @param data request body
      */
-    update(id_or_slug: string, data: UpdatePageBody): Promise<AxiosResponse<any, any>>;
+    update(id_or_slug: string, data: UpdatePageBody): Promise<PageUpdateResponse>;
     /**
      * Check the availability of a slug for a payment page
      * @param slug Page slug
      */
-    checkSlugAvailability(slug: string): Promise<AxiosResponse<any, any>>;
+    checkSlugAvailability(slug: string): Promise<PageCheckSlugResponse>;
     /**
      * Add products to a payment page
      * @param id Page ID
      * @param data request body
      */
-    addProduct(id: string, data: AddProductBody): Promise<AxiosResponse<any, any>>;
+    addProduct(id: string, data: AddProductBody): Promise<PageAddProductResponse>;
 }

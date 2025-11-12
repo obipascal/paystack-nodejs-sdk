@@ -43,6 +43,55 @@ export type UpdateSubaccountBody = {
     /** Stringified JSON object. Add a custom_fields attribute which has an array of objects if you would like the fields to be added to your transaction when displayed on the dashboard. Sample: {"custom_fields":[{"display_name":"Cart ID","variable_name": "cart_id","value": "8393"}]} */
     metadata?: Record<string, any>;
 };
+export interface SubaccountData {
+    id?: number;
+    subaccount_code: string;
+    business_name: string;
+    description: string | null;
+    primary_contact_name: string | null;
+    primary_contact_email: string | null;
+    primary_contact_phone: string | null;
+    metadata: Record<string, any> | null;
+    percentage_charge: number;
+    settlement_bank: string;
+    bank_id?: number;
+    bank?: number;
+    account_number: string;
+    currency: string;
+    account_name?: string;
+    active?: number | boolean;
+    is_verified?: boolean;
+    settlement_schedule?: string;
+    integration: number;
+    domain: string;
+    product?: string;
+    managed_by_integration?: number;
+    createdAt?: string;
+    updatedAt?: string;
+}
+export interface SubaccountCreateResponse extends AxiosResponse {
+    message: string;
+    data: SubaccountData;
+}
+export interface SubaccountListResponse extends AxiosResponse {
+    message: string;
+    data: SubaccountData[];
+    meta: {
+        total: number;
+        skipped: number;
+        perPage: number;
+        page: number;
+        pageCount: number;
+    };
+}
+export interface SubaccountFetchResponse extends AxiosResponse {
+    message: string;
+    data: SubaccountData;
+}
+export interface SubaccountUpdateResponse extends AxiosResponse {
+    message: string;
+    data: SubaccountData;
+}
 export declare class Subaccounts {
     readonly httpClient: AxiosInstance;
     /**
@@ -54,20 +103,20 @@ export declare class Subaccounts {
      * Create a new subaccount
      * @param data request body
      */
-    create(data: CreateSubaccountBody): Promise<AxiosResponse<any, any>>;
+    create(data: CreateSubaccountBody): Promise<SubaccountCreateResponse>;
     /**
      * List all subaccounts on your integration
      */
-    list(): Promise<AxiosResponse<any, any>>;
+    list(): Promise<SubaccountListResponse>;
     /**
      * Fetch a subaccount
      * @param id_or_code Subaccount ID or Code
      */
-    fetch(id_or_code: string): Promise<AxiosResponse<any, any>>;
+    fetch(id_or_code: string): Promise<SubaccountFetchResponse>;
     /**
      * Update a subaccount
      * @param id_or_code Subaccount ID or Code
      * @param data request body
      */
-    update(id_or_code: string, data: UpdateSubaccountBody): Promise<AxiosResponse<any, any>>;
+    update(id_or_code: string, data: UpdateSubaccountBody): Promise<SubaccountUpdateResponse>;
 }
