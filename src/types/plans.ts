@@ -26,6 +26,93 @@ export type CreatePlanBody = {
     invoice_limit?: number;
 };
 
+// Response interfaces for Plans API
+export interface PlanSubscription {
+    customer: number;
+    plan: number;
+    integration: number;
+    domain: string;
+    start: number;
+    status: string;
+    quantity: number;
+    amount: number;
+    subscription_code: string;
+    email_token: string;
+    authorization: {
+        authorization_code: string;
+        bin: string;
+        last4: string;
+        exp_month: string;
+        exp_year: string;
+        channel: string;
+        card_type: string;
+        bank: string;
+        country_code: string;
+        brand: string;
+        reusable: boolean;
+        signature: string;
+        account_name: string | null;
+    };
+    easy_cron_id: string | null;
+    cron_expression: string;
+    next_payment_date: string;
+    open_invoice: string | null;
+    id: number;
+    createdAt: string;
+    updatedAt: string;
+}
+
+export interface PlanData {
+    name: string;
+    amount: number;
+    interval: string;
+    integration: number;
+    domain: string;
+    currency: string;
+    plan_code: string;
+    invoice_limit: number | null;
+    send_invoices: boolean;
+    send_sms: boolean;
+    hosted_page: boolean;
+    hosted_page_url: string | null;
+    hosted_page_summary: string | null;
+    description: string | null;
+    migrate: boolean | null;
+    id: number;
+    createdAt: string;
+    updatedAt: string;
+    subscriptions?: PlanSubscription[];
+    total_subscriptions?: number;
+    active_subscriptions?: number;
+    total_subscriptions_revenue?: number;
+}
+
+export interface PlanCreateResponse extends AxiosResponse {
+    message: string;
+    data: PlanData;
+}
+
+export interface PlanListResponse extends AxiosResponse {
+    message: string;
+    data: PlanData[];
+    meta: {
+        total: number;
+        skipped: number;
+        perPage: number;
+        page: number;
+        pageCount: number;
+    };
+}
+
+export interface PlanFetchResponse extends AxiosResponse {
+    message: string;
+    data: PlanData;
+}
+
+export interface PlanUpdateResponse extends AxiosResponse {
+    message: string;
+}
+
 export declare class Plans {
     readonly httpClient: AxiosInstance;
 
@@ -39,18 +126,18 @@ export declare class Plans {
      * Create a plan on your integration
      * @param data request body
      */
-    create(data: CreatePlanBody): Promise<AxiosResponse<any, any>>;
+    create(data: CreatePlanBody): Promise<PlanCreateResponse>;
 
     /**
      * List plans available on your integration
      */
-    list(): Promise<AxiosResponse<any, any>>;
+    list(): Promise<PlanListResponse>;
 
     /**
      * Get details of a plan on your integration
      * @param id_or_code Plan ID or Code
      */
-    fetch(id_or_code: string): Promise<AxiosResponse<any, any>>;
+    fetch(id_or_code: string): Promise<PlanFetchResponse>;
 
     /**
      * Update a plan details on your integration
@@ -60,5 +147,5 @@ export declare class Plans {
     update(
         id_or_code: string,
         data: CreatePlanBody
-    ): Promise<AxiosResponse<any, any>>;
+    ): Promise<PlanUpdateResponse>;
 }

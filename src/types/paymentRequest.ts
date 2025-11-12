@@ -34,6 +34,121 @@ export type SendNotificationBody = {
     send_notification: boolean;
 };
 
+// Response interfaces for PaymentRequest API
+export interface PaymentRequestLineItem {
+    name: string;
+    amount: number;
+    quantity?: number;
+}
+
+export interface PaymentRequestTax {
+    name: string;
+    amount: number;
+}
+
+export interface PaymentRequestCustomer {
+    id: number;
+    first_name: string;
+    last_name: string;
+    email: string;
+    customer_code: string;
+    phone: string | null;
+    metadata: Record<string, any> | null;
+    risk_action: string;
+}
+
+export interface PaymentRequestData {
+    id: number;
+    domain: string;
+    amount: number;
+    currency: string;
+    due_date: string;
+    has_invoice: boolean;
+    invoice_number: number | null;
+    description: string;
+    pdf_url: string | null;
+    line_items: PaymentRequestLineItem[];
+    tax: PaymentRequestTax[];
+    request_code: string;
+    status: string;
+    paid: boolean;
+    paid_at: string | null;
+    metadata: Record<string, any> | null;
+    notifications: any[];
+    offline_reference: string | null;
+    customer: number | PaymentRequestCustomer;
+    created_at: string;
+    integration: number;
+    archived?: boolean;
+    source?: string;
+    payment_method?: string | null;
+    note?: string | null;
+    amount_paid?: number | null;
+    split_code?: string | null;
+    transactions?: any[];
+}
+
+export interface PaymentRequestCreateResponse extends AxiosResponse {
+    message: string;
+    data: PaymentRequestData;
+}
+
+export interface PaymentRequestListResponse extends AxiosResponse {
+    message: string;
+    data: PaymentRequestData[];
+    meta: {
+        total: number;
+        skipped: number;
+        perPage: number;
+        page: number;
+        pageCount: number;
+    };
+}
+
+export interface PaymentRequestFetchResponse extends AxiosResponse {
+    message: string;
+    data: PaymentRequestData;
+}
+
+export interface PaymentRequestUpdateResponse extends AxiosResponse {
+    message: string;
+    data: PaymentRequestData;
+}
+
+export interface PaymentRequestVerifyResponse extends AxiosResponse {
+    message: string;
+    data: PaymentRequestData;
+}
+
+export interface PaymentRequestNotifyResponse extends AxiosResponse {
+    message: string;
+}
+
+export interface PaymentRequestTotalAmount {
+    currency: string;
+    amount: number;
+}
+
+export interface PaymentRequestTotalsData {
+    pending: PaymentRequestTotalAmount[];
+    successful: PaymentRequestTotalAmount[];
+    total: PaymentRequestTotalAmount[];
+}
+
+export interface PaymentRequestTotalsResponse extends AxiosResponse {
+    message: string;
+    data: PaymentRequestTotalsData;
+}
+
+export interface PaymentRequestFinalizeResponse extends AxiosResponse {
+    message: string;
+    data: PaymentRequestData;
+}
+
+export interface PaymentRequestArchiveResponse extends AxiosResponse {
+    message: string;
+}
+
 export declare class PaymentRequest {
     readonly httpClient: AxiosInstance;
 
@@ -47,18 +162,18 @@ export declare class PaymentRequest {
      * Create a payment request for a transaction on your integration
      * @param data request body
      */
-    create(data: PaymentRequestBody): Promise<AxiosResponse<any, any>>;
+    create(data: PaymentRequestBody): Promise<PaymentRequestCreateResponse>;
 
     /**
      * List the payment requests available on your integration
      */
-    list(): Promise<AxiosResponse<any, any>>;
+    list(): Promise<PaymentRequestListResponse>;
 
     /**
      * Get details of a payment request on your integration
      * @param id Payment Request ID
      */
-    fetch(id: string): Promise<AxiosResponse<any, any>>;
+    fetch(id: string): Promise<PaymentRequestFetchResponse>;
 
     /**
      * Update a payment request details on your integration
@@ -68,13 +183,13 @@ export declare class PaymentRequest {
     update(
         id: string,
         data: PaymentRequestBody
-    ): Promise<AxiosResponse<any, any>>;
+    ): Promise<PaymentRequestUpdateResponse>;
 
     /**
      * Verify details of a payment request on your integration
      * @param code Payment Request code
      */
-    verify(code: string): Promise<AxiosResponse<any, any>>;
+    verify(code: string): Promise<PaymentRequestVerifyResponse>;
 
     /**
      * Send notification of a payment request to your customers
@@ -84,22 +199,22 @@ export declare class PaymentRequest {
     sendNotification(
         code: string,
         data: SendNotificationBody
-    ): Promise<AxiosResponse<any, any>>;
+    ): Promise<PaymentRequestNotifyResponse>;
 
     /**
      * Get payment requests metric
      */
-    total(): Promise<AxiosResponse<any, any>>;
+    total(): Promise<PaymentRequestTotalsResponse>;
 
     /**
      * Finalize a draft payment request
      * @param code Payment Request code
      */
-    finalize(code: string): Promise<AxiosResponse<any, any>>;
+    finalize(code: string): Promise<PaymentRequestFinalizeResponse>;
 
     /**
      * Used to archive a payment request. A payment request will no longer be fetched on list or returned on verify
      * @param code Payment Request code
      */
-    archive(code: string): Promise<AxiosResponse<any, any>>;
+    archive(code: string): Promise<PaymentRequestArchiveResponse>;
 }

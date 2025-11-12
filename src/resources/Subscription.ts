@@ -19,7 +19,7 @@ export class Subscription {
      */
     async create(data: SubscriptionBody) {
         return await this.httpClient.post(
-            HttpRequestEndpoints.subaccount.create,
+            HttpRequestEndpoints.subscription.create,
             data
         );
     }
@@ -28,7 +28,9 @@ export class Subscription {
      * List all subscriptions on your integration
      */
     async list() {
-        return await this.httpClient.get(HttpRequestEndpoints.subaccount.list);
+        return await this.httpClient.get(
+            HttpRequestEndpoints.subscription.list
+        );
     }
 
     /**
@@ -37,7 +39,7 @@ export class Subscription {
      */
     async fetch(id_or_code: string) {
         return await this.httpClient.get(
-            HttpRequestEndpoints.subaccount.fetch.replace(
+            HttpRequestEndpoints.subscription.fetch.replace(
                 ":id_or_code",
                 id_or_code
             )

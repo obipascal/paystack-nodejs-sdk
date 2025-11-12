@@ -73,6 +73,106 @@ export type RemoveSplitDedicatedVirtualAccountBody = {
     account_number: string;
 };
 
+// Dedicated Virtual Account data structures
+export interface DedicatedAccountBank {
+    name: string;
+    id: number;
+    slug: string;
+}
+
+export interface DedicatedAccountCustomer {
+    id: number;
+    first_name: string;
+    last_name: string;
+    email: string;
+    customer_code: string;
+    phone: string;
+    risk_action: string;
+    international_format_phone: string | null;
+    metadata?: Record<string, any>;
+}
+
+export interface DedicatedAccountData {
+    bank: DedicatedAccountBank;
+    account_name: string;
+    account_number: string;
+    assigned: boolean;
+    currency: string;
+    metadata: any;
+    active: boolean;
+    id: number;
+    created_at: string;
+    updated_at: string;
+    assignment?: {
+        integration: number;
+        assignee_id: number;
+        assignee_type: string;
+        expired: boolean;
+        account_type: string;
+        assigned_at: string;
+    };
+    customer?: DedicatedAccountCustomer;
+    split_config?: Record<string, any>;
+}
+
+export interface BankProvider {
+    provider_slug: string;
+    bank_id: number;
+    bank_name: string;
+    id: number;
+}
+
+// Response interfaces for Dedicated Virtual Account API
+export interface DedicatedAccountCreateResponse extends AxiosResponse {
+    message: string;
+    data: DedicatedAccountData;
+}
+
+export interface DedicatedAccountAssignResponse extends AxiosResponse {
+    message: string;
+}
+
+export interface DedicatedAccountListResponse extends AxiosResponse {
+    message: string;
+    data: DedicatedAccountData[];
+    meta?: {
+        total: number;
+        skipped: number;
+        perPage: number;
+        page: number;
+        pageCount: number;
+    };
+}
+
+export interface DedicatedAccountFetchResponse extends AxiosResponse {
+    message: string;
+    data: DedicatedAccountData;
+}
+
+export interface DedicatedAccountRequeryResponse extends AxiosResponse {
+    message: string;
+}
+
+export interface DedicatedAccountDeactivateResponse extends AxiosResponse {
+    message: string;
+    data: DedicatedAccountData;
+}
+
+export interface DedicatedAccountSplitResponse extends AxiosResponse {
+    message: string;
+    data: DedicatedAccountData;
+}
+
+export interface DedicatedAccountRemoveSplitResponse extends AxiosResponse {
+    message: string;
+    data: DedicatedAccountData;
+}
+
+export interface DedicatedAccountProvidersResponse extends AxiosResponse {
+    message: string;
+    data: BankProvider[];
+}
+
 export declare class DedicatedVirtualAccounts {
     /**
      * The Dedicated Virtual Account API enables Nigerian merchants to manage unique payment accounts of their customers.
@@ -86,7 +186,7 @@ export declare class DedicatedVirtualAccounts {
      */
     create(
         data: CreateDedicatedVirtualAccountBody
-    ): Promise<AxiosResponse<any, any>>; // Replace "any" with actual error type
+    ): Promise<DedicatedAccountCreateResponse>;
 
     /**
      * Assign a dedicated virtual account to a customer
@@ -94,18 +194,18 @@ export declare class DedicatedVirtualAccounts {
      */
     assign(
         data: AssignDedicatedVirtualAccountBody
-    ): Promise<AxiosResponse<any, any>>; // Replace "any" with actual error type
+    ): Promise<DedicatedAccountAssignResponse>;
 
     /**
      * List dedicated virtual accounts available on your integration.
      */
-    list(): Promise<AxiosResponse<any, any>>; // Replace "any" with actual error type
+    list(): Promise<DedicatedAccountListResponse>;
 
     /**
      * Get details of a dedicated virtual account on your integration.
      * @param dedicated_account_id Dedicated virtual account ID
      */
-    fetch(dedicated_account_id: string): Promise<AxiosResponse<any, any>>; // Replace "any" with actual error type
+    fetch(dedicated_account_id: string): Promise<DedicatedAccountFetchResponse>;
 
     /**
      * Requery Dedicated Virtual Account for new transactions
@@ -113,13 +213,15 @@ export declare class DedicatedVirtualAccounts {
      */
     query(
         data: DedicatedVirtualAccountQueryParams
-    ): Promise<AxiosResponse<any, any>>; // Likely doesn't have a specific response structure
+    ): Promise<DedicatedAccountRequeryResponse>;
 
     /**
      * Deactivate a dedicated virtual account on your integration.
      * @param dedicated_account_id Dedicated virtual account ID
      */
-    deactivate(dedicated_account_id: string): Promise<AxiosResponse<any, any>>; // Likely an empty success response
+    deactivate(
+        dedicated_account_id: string
+    ): Promise<DedicatedAccountDeactivateResponse>;
 
     /**
      * Split a dedicated virtual account transaction with one or more accounts
@@ -127,7 +229,7 @@ export declare class DedicatedVirtualAccounts {
      */
     split(
         data: DedicatedVirtualAccountSplitTransactionBody
-    ): Promise<AxiosResponse<any, any>>; // Replace "any" with actual error type
+    ): Promise<DedicatedAccountSplitResponse>;
 
     /**
      * If you've previously set up split payment for transactions on a dedicated virtual account, you can remove it with this endpoint
@@ -135,10 +237,10 @@ export declare class DedicatedVirtualAccounts {
      */
     removeSplit(
         data: RemoveSplitDedicatedVirtualAccountBody
-    ): Promise<AxiosResponse<any, any>>; // Replace "any" with actual error type
+    ): Promise<DedicatedAccountRemoveSplitResponse>;
 
     /**
      * Get available bank providers for a dedicated virtual account
      */
-    fetchBankProviders(): Promise<AxiosResponse<any[], any>>; // Likely an array of bank provider objects
+    fetchBankProviders(): Promise<DedicatedAccountProvidersResponse>;
 }

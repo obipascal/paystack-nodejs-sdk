@@ -125,6 +125,113 @@ export type SubmitAddressBody = {
     zipcode: string;
 };
 
+// Response interfaces for Charge API
+export interface ChargeResponse extends AxiosResponse {
+    message: string;
+    data: {
+        id?: number;
+        domain: string;
+        status: string;
+        reference: string;
+        amount: number;
+        message?: string;
+        gateway_response?: string;
+        paid_at?: string;
+        created_at: string;
+        channel: string;
+        currency: string;
+        ip_address?: string;
+        metadata?: Record<string, any>;
+        fees?: number;
+        customer?: Record<string, any>;
+        authorization?: Record<string, any>;
+        plan?: any;
+        transaction_date?: string;
+        requested_amount?: number;
+    };
+}
+
+// Response interfaces for BulkCharges API
+export interface BulkChargeInitiateResponse extends AxiosResponse {
+    message: string;
+    data: {
+        batch_code: string;
+        reference: string;
+        id: number;
+        integration: number;
+        domain: string;
+        status: string;
+        total_charges: number;
+        pending_charges: number;
+        createdAt: string;
+        updatedAt: string;
+    };
+}
+
+export interface BulkChargeListResponse extends AxiosResponse {
+    message: string;
+    data: Array<{
+        domain: string;
+        batch_code: string;
+        status: string;
+        id: number;
+        total_charges?: number;
+        pending_charges?: number;
+        createdAt: string;
+        updatedAt: string;
+    }>;
+    meta: {
+        total: number;
+        skipped: number;
+        perPage: number;
+        page: number;
+        pageCount: number;
+    };
+}
+
+export interface BulkChargeFetchResponse extends AxiosResponse {
+    message: string;
+    data: {
+        domain: string;
+        batch_code: string;
+        status: string;
+        id: number;
+        total_charges: number;
+        pending_charges: number;
+        createdAt: string;
+        updatedAt: string;
+    };
+}
+
+export interface BulkChargeFetchBatchResponse extends AxiosResponse {
+    message: string;
+    data: Array<{
+        integration: number;
+        bulkcharge: number;
+        customer: Record<string, any>;
+        authorization: Record<string, any>;
+        transaction: Record<string, any>;
+        domain: string;
+        amount: number;
+        currency: string;
+        status: string;
+        id: number;
+        createdAt: string;
+        updatedAt: string;
+    }>;
+    meta?: {
+        total: number;
+        skipped: number;
+        perPage: number;
+        page: number;
+        pageCount: number;
+    };
+}
+
+export interface BulkChargePauseResumeResponse extends AxiosResponse {
+    message: string;
+}
+
 export declare class BulkCharges {
     /**
      * The Bulk Charges API allows you create and manage multiple recurring payments from your customers.
@@ -138,19 +245,19 @@ export declare class BulkCharges {
      */
     create(
         data: Record<string, BulkChargeBody[]>
-    ): Promise<AxiosResponse<any, any>>; // Replace "any" with the actual response type
+    ): Promise<BulkChargeInitiateResponse>;
 
     /**
      * This lists all bulk charge batches created by the integration. Statuses can be active, paused, or complete
      * @param params Pagination parameters (optional)
      */
-    list(params?: PaginationParams): Promise<AxiosResponse<any, any>>; // Replace "any" with the actual response type
+    list(params?: PaginationParams): Promise<BulkChargeListResponse>;
 
     /**
      * This endpoint retrieves a specific batch code. It also returns useful information on its progress by way of the total_charges and pending_charges attributes.
      * @param id_or_code Bulk charge ID or code
      */
-    fetch(id_or_code: string): Promise<AxiosResponse<any, any>>; // Replace "any" with the actual response type
+    fetch(id_or_code: string): Promise<BulkChargeFetchResponse>;
 
     /**
      * This endpoint retrieves the charges associated with a specified batch code. Pagination parameters are available. You can also filter by status. Charge statuses can be pending, success or failed.
@@ -160,19 +267,19 @@ export declare class BulkCharges {
     fetchBatch(
         id_or_code: string,
         params?: PaginationParams
-    ): Promise<AxiosResponse<any, any>>; // Replace "any" with the actual response type
+    ): Promise<BulkChargeFetchBatchResponse>;
 
     /**
      * Use this endpoint to pause processing a batch
      * @param batch_code Batch code of the bulk charge
      */
-    pause(batch_code: string): Promise<AxiosResponse<any, any>>; // Replace "any" with the actual response type
+    pause(batch_code: string): Promise<BulkChargePauseResumeResponse>;
 
     /**
      * Use this endpoint to resume processing a batch
      * @param batch_code Batch code of the bulk charge
      */
-    resume(batch_code: string): Promise<AxiosResponse<any, any>>; // Replace "any" with the actual response type
+    resume(batch_code: string): Promise<BulkChargePauseResumeResponse>;
 }
 
 export declare class Charge {
@@ -185,41 +292,41 @@ export declare class Charge {
      * Initialize a charge
      * @param data Charge details
      */
-    initialize(data: ChargeBody): Promise<AxiosResponse<any, any>>;
+    initialize(data: ChargeBody): Promise<ChargeResponse>;
 
     /**
      * Submit a PIN
      * @param data Charge details
      */
-    submitPin(data: SubmitPINBody): Promise<AxiosResponse<any, any>>;
+    submitPin(data: SubmitPINBody): Promise<ChargeResponse>;
 
     /**
      * Submit an OTP
      * @param data Charge details
      */
-    submitOtp(data: SubmitOtpBody): Promise<AxiosResponse<any, any>>;
+    submitOtp(data: SubmitOtpBody): Promise<ChargeResponse>;
 
     /**
      * Submit a phone number
      * @param data Charge details
      */
-    submitPhone(data: SubmitPhoneBody): Promise<AxiosResponse<any, any>>;
+    submitPhone(data: SubmitPhoneBody): Promise<ChargeResponse>;
 
     /**
      * Submit a birthday
      * @param data Charge details
      */
-    submitBirthday(data: SubmitBirthdayBody): Promise<AxiosResponse<any, any>>;
+    submitBirthday(data: SubmitBirthdayBody): Promise<ChargeResponse>;
 
     /**
      * Check pending charge
      * @param reference Charge reference
      */
-    checkPendingCharge(reference: string): Promise<AxiosResponse<any, any>>;
+    checkPendingCharge(reference: string): Promise<ChargeResponse>;
 
     /**
      * Submit an address
      * @param data Charge details
      */
-    submitAddress(data: SubmitAddressBody): Promise<AxiosResponse<any, any>>;
+    submitAddress(data: SubmitAddressBody): Promise<ChargeResponse>;
 }
