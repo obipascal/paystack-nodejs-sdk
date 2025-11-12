@@ -1,29 +1,3 @@
-import { AxiosResponse } from "axios";
-import { ApplePayBody } from "./applepay";
-import { PaginationParams } from "./const";
-import {
-    BulkChargeBody,
-    ChargeBody,
-    SubmitAddressBody,
-    SubmitBirthdayBody,
-    SubmitOtpBody,
-    SubmitPINBody,
-    SubmitPhoneBody,
-} from "./charge";
-import {
-    BlacklistOrWhitelistCustomerBody,
-    CreateCustomerBody,
-    DeactivateAuthorizationBody,
-    UpdateCustomerBody,
-} from "./customer";
-import {
-    AssignDedicatedVirtualAccountBody,
-    CreateDedicatedVirtualAccountBody,
-    DedicatedVirtualAccountQueryParams,
-    DedicatedVirtualAccountSplitTransactionBody,
-    RemoveSplitDedicatedVirtualAccountBody,
-} from "./dedicatedVirtualAccount";
-
 export * from "./applepay";
 export * from "./charge";
 export * from "./const";

@@ -1,3 +1,4 @@
+// Export all API resources
 export * from "./resources/Customer";
 export * from "./resources/Transactions";
 export * from "./resources/Transfer";
@@ -17,3 +18,12 @@ export * from "./resources/Disputes";
 export * from "./resources/Refunds";
 export * from "./resources/Verification";
 export * from "./resources/Miscellaneous";
+export * from "./resources/TransactionSplit";
+
+// Export commonly used enums and types
+export { Currencies } from "./types/const";
+export type { PaginationParams, PagerParams } from "./types/const";
+
+// Export all types as namespace to avoid conflicts with resource classes
+import * as PaystackTypes from "./types";
+export { PaystackTypes };
