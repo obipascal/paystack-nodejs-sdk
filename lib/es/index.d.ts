@@ -17,3 +17,8 @@ export * from "./resources/Disputes";
 export * from "./resources/Refunds";
 export * from "./resources/Verification";
 export * from "./resources/Miscellaneous";
+export * from "./resources/TransactionSplit";
+export { Currencies } from "./types/const";
+export type { PaginationParams, PagerParams } from "./types/const";
+import * as PaystackTypes from "./types";
+export { PaystackTypes };
