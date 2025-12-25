@@ -1,14 +1,3 @@
-> ⚠️ **DEPRECATED PACKAGE**
->
-> This package has been **deprecated** and is no longer actively maintained.
->
-> Please migrate to the new and actively maintained package:
->
-> 👉 **@obipascal/paystack-sdk**  
-> 🔗 https://www.npmjs.com/package/@obipascal/paystack-sdk
->
-> The new package provides improved type safety, better API coverage, and ongoing updates.
-
 # Paystack API SDK For NodeJS
 
 A comprehensive Node.js/TypeScript SDK for the Paystack API. This package provides full type safety, supports both CommonJS and ES6 environments, and uses Axios as its HTTP client for seamless communication with the Paystack backend.
@@ -992,4 +981,3 @@ For issues and questions:
 -   [Paystack API Documentation](https://paystack.com/docs/api/)
 -   [Paystack Dashboard](https://dashboard.paystack.com/)
 -   [Package on NPM](https://www.npmjs.com/package/@obipascal/paystack-sdk)
-
