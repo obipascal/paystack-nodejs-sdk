@@ -1,18 +1,14 @@
 import { AxiosInstance, AxiosResponse } from "axios";
 import { Currencies } from "./const";
 export type TransferBody = {
-    /** Where should we transfer from? Only balance for now */
-    source: "balance" | string;
     /** Amount to transfer in kobo if currency is NGN and pesewas if currency is GHS. */
-    amount: number;
+    amount: string | number;
+    /** If specified, the field should be a unique identifier (in lowercase) for the object. Only -,_ and alphanumeric characters allowed. */
+    reference: string;
+    /** The reason for the transfer */
+    reason: string;
     /** Code for transfer recipient */
     recipient: string;
-    /** The reason for the transfer */
-    reason?: string;
-    /** Specify the currency of the transfer. Defaults to NGN */
-    currency?: Currencies;
-    /** If specified, the field should be a unique identifier (in lowercase) for the object. Only -,_ and alphanumeric characters allowed. */
-    reference?: string;
 };
 export type FinalizeTransferBody = {
     /** The transfer code you want to finalize */
@@ -23,6 +19,8 @@ export type FinalizeTransferBody = {
 export type BulkTransferBody = {
     /** Where should we transfer from? Only balance for now */
     source: "balance" | string;
+    /** Currency of the transfer */
+    currency: Currencies;
     /** A list of transfer object. Each object should contain amount, recipient, and reference */
     transfers: Array<TransferBody>;
 };
