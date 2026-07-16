@@ -2,6 +2,8 @@ import { AxiosInstance, AxiosResponse } from "axios";
 import { Currencies } from "./const";
 
 export type TransferBody = {
+    /** The source to be debited. Only balance is supported */
+    source: "balance";
     /** Amount to transfer in kobo if currency is NGN and pesewas if currency is GHS. */
     amount: string | number;
     /** If specified, the field should be a unique identifier (in lowercase) for the object. Only -,_ and alphanumeric characters allowed. */
@@ -25,7 +27,7 @@ export type BulkTransferBody = {
     /** Currency of the transfer */
     currency: Currencies;
     /** A list of transfer object. Each object should contain amount, recipient, and reference */
-    transfers: Array<TransferBody>;
+    transfers: Array<Omit<TransferBody, "source">>;
 };
 
 export type ResendTranasferCodeBody = {
