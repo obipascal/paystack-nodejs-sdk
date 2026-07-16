@@ -27,7 +27,7 @@ export class Transfer {
     async initiate(data: TransferBody) {
         return await this.httpClient.post(
             HttpRequestEndpoints.transfer.initiate,
-            data
+            data,
         );
     }
 
@@ -46,8 +46,8 @@ export class Transfer {
         return await this.httpClient.get(
             HttpRequestEndpoints.transfer.fetch.replace(
                 ":id_or_code",
-                id_or_code
-            )
+                id_or_code,
+            ),
         );
     }
 
@@ -58,7 +58,7 @@ export class Transfer {
     async finalize(data: FinalizeTransferBody) {
         return await this.httpClient.post(
             HttpRequestEndpoints.transfer.finalize,
-            data
+            data,
         );
     }
 
@@ -69,7 +69,7 @@ export class Transfer {
     async bulk(data: BulkTransferBody) {
         return await this.httpClient.post(
             HttpRequestEndpoints.transfer.bulk,
-            data
+            data,
         );
     }
 
@@ -81,8 +81,8 @@ export class Transfer {
         return await this.httpClient.get(
             HttpRequestEndpoints.transfer.verify.replace(
                 ":reference",
-                reference
-            )
+                reference,
+            ),
         );
     }
 
@@ -91,7 +91,7 @@ export class Transfer {
      */
     async checkBalance() {
         return await this.httpClient.get(
-            HttpRequestEndpoints.transfer.checkBalance
+            HttpRequestEndpoints.transfer.checkBalance,
         );
     }
 
@@ -109,7 +109,7 @@ export class Transfer {
     async resendOtp(data: ResendTranasferCodeBody) {
         return await this.httpClient.post(
             HttpRequestEndpoints.transfer.resendOtp,
-            data
+            data,
         );
     }
 
@@ -118,7 +118,7 @@ export class Transfer {
      */
     async disableOtp() {
         return await this.httpClient.post(
-            HttpRequestEndpoints.transfer.disableOtp
+            HttpRequestEndpoints.transfer.disableOtp,
         );
     }
 
@@ -129,7 +129,7 @@ export class Transfer {
     async disableOtpFinalize(data: FinalizeTransferBody) {
         return await this.httpClient.post(
             HttpRequestEndpoints.transfer.disableOtpFinalize,
-            data
+            data,
         );
     }
 
@@ -138,7 +138,8 @@ export class Transfer {
      */
     async enableOtp() {
         return await this.httpClient.post(
-            HttpRequestEndpoints.transfer.enableOtp
+            HttpRequestEndpoints.transfer.enableOtp,
         );
     }
 }
+
